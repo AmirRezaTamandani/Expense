@@ -31,7 +31,6 @@ function App() {
   ];
   return (
     <div className="App">
-      <h1>this is a react app 42</h1>
       <Expenses items={mockExpenses} />
     </div>
   );
