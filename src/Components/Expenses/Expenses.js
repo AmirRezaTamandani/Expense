@@ -3,6 +3,7 @@ import Card from "../UIElements/Card";
 import ExpenseFilter from "./ExpenseFilter";
 import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
+import ExpensesList from "./ExpensesList";
 
 const Expenses = (props) => {
   const [selectedYear, setSelectedYear] = useState("2022");
@@ -13,19 +14,7 @@ const Expenses = (props) => {
   const filteredExpenses = props.items.filter((expense) => {
     return expense.date.getFullYear().toString() === selectedYear;
   });
-  let expensesContent = <p1>there is no saved expense :/</p1>;
-  if (filteredExpenses.length > 0) {
-    expensesContent = filteredExpenses.map((expense) => {
-      return (
-        <ExpenseItem
-          key={expense.id}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-        />
-      );
-    });
-  }
+
   return (
     <div>
       <Card className="expenses">
@@ -33,8 +22,7 @@ const Expenses = (props) => {
           onChangeHandler={filterHandler}
           selectedYear={selectedYear}
         />
-
-        {expensesContent}
+        <ExpensesList items={filteredExpenses} />
       </Card>
     </div>
   );
