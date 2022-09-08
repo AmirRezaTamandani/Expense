@@ -41,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <NewExpense onAddExpenses={addExpenceHandler} />
-
+      67
       <Expenses items={expenses} />
     </div>
   );
