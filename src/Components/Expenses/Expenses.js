@@ -7,14 +7,25 @@ import "./Expenses.css";
 const Expenses = (props) => {
   const [selectedYear, setSelectedYear] = useState("2022");
   const filterHandler = (selectedYear) => {
-    // console.log("expences has :" , selectedYear)
     setSelectedYear(selectedYear);
   };
 
   const filteredExpenses = props.items.filter((expense) => {
     return expense.date.getFullYear().toString() === selectedYear;
   });
-
+  let expensesContent = <p1>there is no saved expense :/</p1>;
+  if (filteredExpenses.length > 0) {
+    expensesContent = filteredExpenses.map((expense) => {
+      return (
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
+      );
+    });
+  }
   return (
     <div>
       <Card className="expenses">
@@ -22,18 +33,8 @@ const Expenses = (props) => {
           onChangeHandler={filterHandler}
           selectedYear={selectedYear}
         />
-        {filteredExpenses.length === 0 && <p1>there is no saved expense :/</p1>}
-        {filteredExpenses.length > 0 &&
-          filteredExpenses.map((expense) => {
-            return (
-              <ExpenseItem
-                key={expense.id}
-                title={expense.title}
-                amount={expense.amount}
-                date={expense.date}
-              />
-            );
-          })}
+
+        {expensesContent}
       </Card>
     </div>
   );
