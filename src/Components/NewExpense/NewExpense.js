@@ -19,7 +19,7 @@ function NewExpense(props) {
   };
   return (
     <div className="new-expense">
-      {!isEditing && <button onClick={editingHandler}> add expense</button>}
+      {!isEditing && <button onClick={editingHandler}> Add New Expense</button>}
       {isEditing && (
         <ExpenceForm
           onSaveExpensesData={saveExpenseDataHandler}
